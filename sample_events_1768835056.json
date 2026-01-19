@@ -1,0 +1,62 @@
+[
+  {
+    "topic": "cdc.public.users",
+    "partition": 0,
+    "offset": 8,
+    "key": {
+      "id": 9
+    },
+    "value": {
+      "schema": {
+        "type": "struct",
+        "fields": [
+          {
+            "type": "int32",
+            "optional": false,
+            "default": 0,
+            "field": "id"
+          },
+          {
+            "type": "string",
+            "optional": false,
+            "field": "username"
+          },
+          {
+            "type": "string",
+            "optional": false,
+            "field": "email"
+          },
+          {
+            "type": "int64",
+            "optional": true,
+            "name": "io.debezium.time.MicroTimestamp",
+            "version": 1,
+            "default": 0,
+            "field": "created_at"
+          },
+          {
+            "type": "boolean",
+            "optional": true,
+            "default": true,
+            "field": "is_active"
+          },
+          {
+            "type": "string",
+            "optional": true,
+            "field": "__deleted"
+          }
+        ],
+        "optional": false,
+        "name": "cdc.public.users.Value"
+      },
+      "payload": {
+        "id": 9,
+        "username": "snoopy",
+        "email": "snoopy@gmail.com",
+        "created_at": 1768780800000000,
+        "is_active": true,
+        "__deleted": "false"
+      }
+    }
+  }
+]

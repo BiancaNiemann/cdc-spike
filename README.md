@@ -74,7 +74,7 @@ docker-compose ps
 
 ```bash
 cd ..
-python scripts/setup_database.py
+python src/cdc_spike/setup_database.py
 ```
 
 This creates two tables (`users` and `orders`) with sample data.
@@ -82,7 +82,7 @@ This creates two tables (`users` and `orders`) with sample data.
 ### Step 6: Start Debezium Connector
 
 ```bash
-python scripts/setup_connectors.py
+python src/cdc_spike/setup_connectors.py
 ```
 
 This configures Debezium to watch the PostgreSQL database.
@@ -91,10 +91,10 @@ This configures Debezium to watch the PostgreSQL database.
 
 ```bash
 # Terminal 1: Make database changes
-python scripts/produce_changes.py
+python src/cdc_spike/produce_changes.py
 
 # Terminal 2: Watch CDC events
-python scripts/consume_kafka.py
+python src/cdc_spike/consume_kafka.py
 ```
 
 ## 📚 Understanding the Flow
@@ -303,7 +303,7 @@ cdc-spike/
 │   └── elasticsearch-sink-connector.json
 ├── docker/
 │   └── docker-compose.yml         # All services
-├── scripts/
+├── src/cdc_spike/
 │   ├── setup_database.py          # Create tables & data
 │   ├── setup_connectors.py        # Configure Debezium
 │   ├── produce_changes.py         # Make DB changes
@@ -353,7 +353,7 @@ uv pip install -e .
 cd docker
 docker-compose up -d
 
-# Run scripts as normal
+# Run src/cdc_spike as normal
 ```
 
 ## 🐛 Troubleshooting

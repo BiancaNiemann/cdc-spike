@@ -106,10 +106,11 @@ def analyze_event(key, value, topic, partition, offset):
     console.print(JSON(json.dumps(value, indent=2)))
     
     # Extract and explain key fields
-    op = value.get('op', 'unknown')
-    before = value.get('before')
-    after = value.get('after')
-    source = value.get('source', {})
+    payload = value.get("payload", {}) 
+    op = payload.get("op", "unknown") 
+    before = payload.get("before") 
+    after = payload.get("after") 
+    source = payload.get("source", {})
     
     console.print("\n[bold cyan]Event Analysis:[/bold cyan]")
     
