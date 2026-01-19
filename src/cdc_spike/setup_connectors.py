@@ -151,7 +151,7 @@ def main():
     
     # Create Debezium PostgreSQL connector
     success_debezium = create_connector(
-        "configs/debezium-postgres-connector.json",
+        "config/debezium-postgres-connector.json",
         "postgres-source-connector"
     )
     
