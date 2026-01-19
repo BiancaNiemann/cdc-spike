@@ -13,6 +13,12 @@ from rich.table import Table
 from rich.prompt import Prompt
 import time
 
+# added this im
+from elasticsearch import Elasticsearch 
+
+es = Elasticsearch("http://localhost:9200")
+# till here
+
 console = Console()
 
 KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092']
@@ -107,10 +113,27 @@ def analyze_event(key, value, topic, partition, offset):
     
     # Extract and explain key fields
     payload = value.get("payload", {}) 
-    op = payload.get("op", "unknown") 
-    before = payload.get("before") 
-    after = payload.get("after") 
-    source = payload.get("source", {})
+    
+    # Extract CDC metadata
+    op = payload.get("__op") # "c", "u", "d"
+    deleted = payload.get("__deleted") # "true" or "false"
+    table = payload.get("__table") # "users", "orders"
+    
+    # Determine index name from table
+    index_name = table.lower()
+    
+    # Document ID
+    doc_id = payload.get("id")
+    
+    # Handle CREATE or UPDATE
+    if deleted == "false" and op in ("c", "u"):
+        es.index(index=index_name, id=doc_id, document=payload)
+        console.print(f"[green]Indexed document {doc_id} into {index_name}[/green]")
+    
+    # Handle DELETE
+    elif deleted == "true" or op == "d":
+        es.delete(index=index_name, id=doc_id, ignore=[404])
+        console.print(f"[red]Deleted document {doc_id} from {index_name}[/red]")
     
     console.print("\n[bold cyan]Event Analysis:[/bold cyan]")
     
@@ -124,9 +147,9 @@ def analyze_event(key, value, topic, partition, offset):
     console.print(f"[green]Operation:[/green] '{op}' - {op_descriptions.get(op, 'Unknown')}")
     
     # Source info
-    console.print(f"[green]Source Table:[/green] {source.get('schema')}.{source.get('table')}")
-    console.print(f"[green]Database:[/green] {source.get('db')}")
-    console.print(f"[green]Timestamp:[/green] {source.get('ts_ms')} ({time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(source.get('ts_ms', 0)/1000))} UTC)")
+    #console.print(f"[green]Source Table:[/green] {source.get('schema')}.{source.get('table')}")
+    #console.print(f"[green]Database:[/green] {source.get('db')}")
+    #console.print(f"[green]Timestamp:[/green] {source.get('ts_ms')} ({time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(source.get('ts_ms', 0)/1000))} UTC)")
     
     # Data states
     if before:

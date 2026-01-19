@@ -57,7 +57,7 @@ Press `Ctrl+C` when all services show "(healthy)".
 cd ..
 
 # Create tables and sample data
-python src/cdc_spike//setup_database.py
+python src/cdc_spike/setup_database.py
 ```
 
 You should see a nice table with sample users and orders!
@@ -65,7 +65,7 @@ You should see a nice table with sample users and orders!
 ### 5. Start Debezium (30 seconds)
 
 ```bash
-python src/cdc_spike//setup_connectors.py
+python src/cdc_spike/setup_connectors.py
 ```
 
 You should see:
@@ -79,13 +79,13 @@ Open TWO terminals:
 
 **Terminal 1 - Watch Events:**
 ```bash
-python src/cdc_spike//consume_kafka.py
+python src/cdc_spike/consume_kafka.py
 # Choose option 1
 ```
 
 **Terminal 2 - Make Changes:**
 ```bash
-python src/cdc_spike//produce_changes.py
+python src/cdc_spike/produce_changes.py
 # Choose option 1 (INSERT new user)
 # Enter username: "testuser"
 # Enter email: "test@example.com"
