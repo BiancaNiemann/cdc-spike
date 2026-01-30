@@ -3,6 +3,7 @@
 - cd docker
 - docker compose up -d
 - python src/cdc_spike/setup_database.py (Creates a dummy database of users and orders)
+- python scripts/setup_connectors.py
 
 #### Open a new bash terminal called make changes
 - source .venv/bin/activate

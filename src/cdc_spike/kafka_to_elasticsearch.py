@@ -6,7 +6,7 @@ This service consumes CDC events from Kafka and indexes them into Elasticsearch.
 Run this in the background to see changes appear in Kibana in real-time!
 
 Usage:
-    python scripts/kafka_to_elasticsearch.py
+    python src/cdc_spike/kafka_to_elasticsearch.py
 """
 
 import json

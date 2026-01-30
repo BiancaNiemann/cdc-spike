@@ -186,9 +186,9 @@ def main():
     
     console.print("\n[bold green]✓ Database setup complete![/bold green]")
     console.print("\n[yellow]Next steps:[/yellow]")
-    console.print("1. Run Debezium connector: python scripts/setup_connectors.py")
-    console.print("2. Make changes: python scripts/produce_changes.py")
-    console.print("3. Inspect Kafka: python scripts/consume_kafka.py")
+    console.print("1. Run Debezium connector: python src/cdc_spike/setup_connectors.py")
+    console.print("2. Make changes: python src/cdc_spike/produce_changes.py")
+    console.print("3. Inspect Kafka: python src/cdc_spike/consume_kafka.py")
 
 
 if __name__ == "__main__":

@@ -161,21 +161,10 @@ def main():
         time.sleep(3)
         list_topics()
     
-    # Note: Elasticsearch connector requires the Confluent connector which may not be
-    # in the Debezium image. We'll document manual setup instead.
-    console.print("\n[yellow]Note on Elasticsearch Sink Connector:[/yellow]")
-    console.print("The Debezium image doesn't include the Elasticsearch sink connector.")
-    console.print("You can:")
-    console.print("1. Manually consume from Kafka and write to Elasticsearch")
-    console.print("2. Use a different Kafka Connect image with the connector")
-    console.print("3. Use Logstash as an alternative")
-    console.print("\nFor this spike, we'll consume Kafka messages in Python")
-    console.print("and manually show the Elasticsearch indexing pattern.")
-    
     console.print("\n[bold green]✓ Connector setup complete![/bold green]")
     console.print("\n[yellow]Next steps:[/yellow]")
-    console.print("1. Make database changes: python scripts/produce_changes.py")
-    console.print("2. Inspect messages: python scripts/consume_kafka.py")
+    console.print("1. Make database changes: python src/cdc_spike/produce_changes.py")
+    console.print("2. Inspect messages: python src/cdc_spike/consume_kafka.py")
 
 
 if __name__ == "__main__":

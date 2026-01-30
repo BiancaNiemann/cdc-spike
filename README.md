@@ -95,6 +95,9 @@ python src/cdc_spike/produce_changes.py
 
 # Terminal 2: Watch CDC events
 python src/cdc_spike/consume_kafka.py
+
+# Terminal 3: Watch Elasticsearch
+python src/cdc_spike/kafka_to_elasticsearch.py
 ```
 
 ## 📚 Understanding the Flow
@@ -308,8 +311,10 @@ cdc-spike/
 │   ├── setup_connectors.py        # Configure Debezium
 │   ├── produce_changes.py         # Make DB changes
 │   └── consume_kafka.py           # Inspect events
+|   └── kafka_to_elasticsearch.py  # Watch changes in elasticsearch
 ├── docs/
 │   └── FINDINGS.md                # Adapter requirements
+│   └── Notes on each script
 ├── pyproject.toml                 # Python dependencies
 └── README.md                      # This file
 ```
