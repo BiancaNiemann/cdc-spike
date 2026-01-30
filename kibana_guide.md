@@ -47,13 +47,13 @@ sleep 30  # Wait for services to be ready
 
 ```bash
 cd ..
-python scripts/setup_database.py
+python src/cdc_spike/setup_database.py
 ```
 
 ### Step 4: Setup Debezium Connector (if not done)
 
 ```bash
-python scripts/setup_connectors.py
+python src/cdc_spike/setup_connectors.py
 ```
 
 ### Step 5: Start the Bridge Service
@@ -61,7 +61,7 @@ python scripts/setup_connectors.py
 This is the **key component** that moves data from Kafka to Elasticsearch:
 
 ```bash
-python scripts/kafka_to_elasticsearch.py
+python src/cdc_spike/kafka_to_elasticsearch.py
 ```
 
 You should see:
@@ -123,7 +123,7 @@ You'll want **THREE** windows/panels:
 In Terminal 2:
 
 ```bash
-python scripts/produce_changes.py
+python src/cdc_spike/produce_changes.py
 ```
 
 Choose an operation, like:
@@ -153,7 +153,7 @@ Total Events    3
 
 **Terminal 2:**
 ```bash
-python scripts/produce_changes.py
+python src/cdc_spike/produce_changes.py
 # Choose: 3 - UPDATE user email
 # Select a user
 # Enter new email
@@ -169,7 +169,7 @@ python scripts/produce_changes.py
 
 **Terminal 2:**
 ```bash
-python scripts/produce_changes.py
+python src/cdc_spike/produce_changes.py
 # Choose: 5 - DELETE user
 # Select a user
 # Confirm deletion
@@ -184,7 +184,7 @@ python scripts/produce_changes.py
 
 **Terminal 2:**
 ```bash
-python scripts/produce_changes.py
+python src/cdc_spike/produce_changes.py
 # Choose: 7 - Bulk operations
 ```
 
@@ -313,13 +313,13 @@ sleep 10
 
 2. Are there messages in Kafka?
    ```bash
-   python scripts/consume_kafka.py
+   python src/cdc_spike/consume_kafka.py
    # Choose option 1 - if no messages, connector might be down
    ```
 
 3. Restart the connector:
    ```bash
-   python scripts/setup_connectors.py
+   python src/cdc_spike/setup_connectors.py
    ```
 
 ### Bridge Service Stats Not Updating
@@ -351,7 +351,7 @@ Set reasonable intervals:
 
 **Terminal 2:**
 ```bash
-python scripts/produce_changes.py
+python src/cdc_spike/produce_changes.py
 ```
 
 1. Create new user `sarah`
