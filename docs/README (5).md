@@ -34,7 +34,7 @@ flowchart LR
     B -->|WAL records| C[WAL]
     C -->|Logical replication| D[Debezium Connector]
     D -->|CDC events| E[Kafka Topics]
-    E -->|Consumed by| F[Consumer]
+    E -->|Consumed by| F[Elasticsearch]
 
 ```
 
