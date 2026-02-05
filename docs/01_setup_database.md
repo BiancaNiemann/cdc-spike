@@ -15,12 +15,12 @@ This Python script sets up the PostgreSQL database for the CDC pipeline.
 
 ### How to run:
 ```bash
-python setup_database.py
+python src/cdc_spike/setup_database.py
 ```
 
 ### Next steps:
-1. Run Debezium connector: `setup_connectors.py`
-2. Make changes: `produce_changes.py`
-3. Inspect Kafka: `consume_kafka.py`
+1. Run Debezium connector: `src/cdc_spike/setup_connectors.py`
+2. Make changes: `src/cdc_spike/produce_changes.py`
+3. Inspect Kafka: `src/cdc_spike/consume_kafka.py`
 
 This script is perfect for quickly initializing your CDC environment with test data.

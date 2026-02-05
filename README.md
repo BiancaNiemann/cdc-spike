@@ -273,25 +273,14 @@ curl http://localhost:9200/cdc.public.users/_doc/1?pretty
 curl http://localhost:8083/connectors/postgres-source-connector/status | json_pp
 ```
 
-## 🧪 Test Scenarios
+## 🧪 Test Scenario
 
-### Scenario 1: Basic CRUD Operations
+###  Basic CRUD Operations
 
 1. INSERT a user → Check Elasticsearch has new document
 2. UPDATE the user's email → Check document updated
 3. DELETE the user → Check document removed
 
-### Scenario 2: Bulk Operations
-
-Use the bulk operations option to generate multiple events quickly and observe ordering.
-
-### Scenario 3: Schema Evolution
-
-Add a new column to PostgreSQL:
-```sql
-ALTER TABLE users ADD COLUMN phone VARCHAR(20);
-UPDATE users SET phone = '555-1234' WHERE id = 1;
-```
 
 Observe how Debezium handles the new field.
 
@@ -313,8 +302,7 @@ cdc-spike/
 │   └── consume_kafka.py           # Inspect events
 |   └── kafka_to_elasticsearch.py  # Watch changes in elasticsearch
 ├── docs/
-│   └── FINDINGS.md                # Adapter requirements
-│   └── Notes on each script
+│   └── Notes on each script plus connectors and tool explanations
 ├── pyproject.toml                 # Python dependencies
 └── README.md                      # This file
 ```
@@ -423,6 +411,3 @@ curl http://localhost:8083/
 - ✅ Team can run and modify the setup
 - ✅ Adapter requirements are documented
 
----
-
-**Ready to submit?** Create a PR with branch name: `research/debezium-to-elastic-showcase`

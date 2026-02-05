@@ -27,7 +27,7 @@ PostgreSQL → Debezium → Kafka → [This Bridge] → Elasticsearch → Kibana
 
 ## Prerequisites
 
-Make sure these services are running:
+Make sure these services are running (should all start up with Docker compose):
 
 - **Kafka** (localhost:9092)
 - **Elasticsearch** (localhost:9200)
@@ -170,10 +170,3 @@ cd docker && docker-compose up -d kafka
 - Commits offsets after each batch
 - For production, consider tuning refresh intervals
 
-## License
-
-MIT
-
-## Contributing
-
-Contributions welcome! Please feel free to submit a Pull Request.

@@ -1,3 +1,4 @@
+version: '3.8'
 
 services:
   # PostgreSQL Database - Where your data lives
@@ -15,7 +16,7 @@ services:
     command:
       - "postgres"
       - "-c"
-      - "wal_level=logical"  # Required for CDC - tells PostgreSQL to track changes
+      - "wal_level=logical" # Required for CDC - tells PostgreSQL to track changes
       - "-c"
       - "max_wal_senders=10"
       - "-c"
@@ -55,7 +56,7 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
@@ -99,9 +100,9 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
     container_name: cdc-elasticsearch
     environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -123,20 +124,20 @@ services:
     ports:
       - "5601:5601"
     environment:
-      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
 
-  #pgadmin:
-   # image: dpage/pgadmin4
-   # container_name: pgadmin
-   # restart: always
-   # environment:
-   #   PGADMIN_DEFAULT_EMAIL: admin@example.com
-   #   PGADMIN_DEFAULT_PASSWORD: admin
-   # ports:
-   #   - "5050:80"
-   # depends_on:
-   #   - postgres
-
+# Optional pgAdmin (commented out)
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    container_name: pgadmin
+#    restart: always
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@example.com
+#      PGADMIN_DEFAULT_PASSWORD: admin
+#    ports:
+#      - "5050:80"
+#    depends_on:
+#      - postgres
 
 volumes:
   postgres-data:

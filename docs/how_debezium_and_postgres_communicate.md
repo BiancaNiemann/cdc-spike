@@ -42,7 +42,7 @@ flowchart LR
 
 ## What each component does
 
-### Python script (Change Producer)
+### Python script (produce_changes,py)
 
 -   Connects to PostgreSQL
 -   Runs INSERT / UPDATE / DELETE statements
@@ -94,7 +94,7 @@ Think of it as a **bookmark** in the change log.
 
 ### Debezium (Kafka Connect)
 
-Runs inside this container:
+Runs inside this container (see docker-compose.yml):
 
 ``` yaml
 image: debezium/connect:2.5
@@ -107,7 +107,7 @@ This is where Debezium is **listening**.
 
 ------------------------------------------------------------------------
 
-### Debezium Connector Configuration (Key Lines)
+### Debezium Connector Configuration (Key Lines in debezium-postgres-connector.json)
 
 ``` json
 "database.hostname": "postgres",
@@ -191,25 +191,3 @@ All changes flow naturally from the database.
 
 ------------------------------------------------------------------------
 
-## One-sentence takeaway
-
-> **Debezium listens to PostgreSQL's WAL using logical replication and
-> turns database changes into Kafka events.**
-
-------------------------------------------------------------------------
-
-## How to run (high level)
-
-1.  Start Docker Compose
-2.  Register the Debezium connector
-3.  Run the Python producer script
-4.  Watch Kafka receive CDC events
-
-------------------------------------------------------------------------
-
-## Why this matters
-
-This pattern is used in: - Event-driven architectures - Real-time
-analytics - Microservices - Data platforms - Streaming pipelines
-
-You're learning an **industry-standard data engineering pattern**.

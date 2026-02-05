@@ -1,4 +1,4 @@
-# CDC Change Producer (Beginner Friendly)
+# CDC Change Producer
 
 The Python script lets you **manually create database changes** (INSERT,
 UPDATE, DELETE) so you can **see CDC events being produced** by Debezium
@@ -6,19 +6,6 @@ in real time.
 
 Think of this script as a **remote control** for triggering database
 changes on purpose.
-
-------------------------------------------------------------------------
-
-## Who is this for?
-
-This is written for:
-
--   Beginners
--   People new to CDC
--   People new to Debezium
--   People learning data engineering concepts
-
-No prior Debezium knowledge needed.
 
 ------------------------------------------------------------------------
 
