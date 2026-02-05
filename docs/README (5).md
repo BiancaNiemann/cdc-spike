@@ -1,6 +1,6 @@
-# CDC with PostgreSQL & Debezium (Beginner Guide)
+# CDC with PostgreSQL & Debezium
 
-This repository demonstrates **Change Data Capture (CDC)** using:
+This readme explains **Change Data Capture (CDC)** using:
 
 -   PostgreSQL
 -   Debezium
