@@ -30,11 +30,12 @@ Debezium makes this possible.
 
 ``` mermaid
 flowchart LR
-    A[Python Script] -->|SQL INSERT/UPDATE/DELETE| B[(PostgreSQL)]
-    B -->|Write-Ahead Log (WAL)| C[Logical Replication Slot]
-    C -->|Logical Decoding| D[Debezium Connector]
-    D -->|CDC Events| E[Kafka Topics]
-    E -->|Consume| F[Kafka Consumer Script]
+    A[Python Script] -->|SQL changes| B[(PostgreSQL)]
+    B -->|WAL records| C[WAL]
+    C -->|Logical replication| D[Debezium Connector]
+    D -->|CDC events| E[Kafka Topics]
+    E -->|Consumed by| F[Consumer]
+
 ```
 
 ------------------------------------------------------------------------
